@@ -2,25 +2,25 @@ import React, { useState, useEffect } from "react";
 
 import { mxGraph, mxRubberband, mxShape, mxConnectionHandler, mxGraphModel, mxGeometry } from "mxgraph-js";
 
-import App from "./Components/App";
-import Header from "./Components/Header";
-import Footer from "./Components/Footer";
-import Toolbar from "./Components/Toolbar";
-import AttributeEditor from "./Components/AttributeEditor";
+import App from "./App";
+import Header from "./Header";
+import Footer from "./Footer";
+import Toolbar from "./Toolbar";
+import AttributeEditor from "./AttributeEditor";
 
-import setDeleteEvent from "./Components/setDeleteEvent";
-import setStylesheet from "./Components/setStylesheet";
-import setAnchors from "./Components/setAnchors";
-import setClipboard from "./Components/setClipboard";
-import setDefault from "./Components/setDefault";
+import setDeleteEvent from "./setDeleteEvent";
+import setStylesheet from "./setStylesheet";
+import setAnchors from "./setAnchors";
+import setClipboard from "./setClipboard";
+import setDefault from "./setDefault";
 
-import "./Css/Main.css";
-import "./Css/Images.css";
-import "./Css/common.css";
-import "./Css/explorer.css";
-import "./Css/hamburger_menu.css";
+import "../Css/Main.css";
+import "../Css/Images.css";
+import "../Css/common.css";
+import "../Css/explorer.css";
+import "../Css/hamburger_menu.css";
 
-const Main = (props) => {
+export default function Main(props) {
 	// mxGraph object
 	const [graph, setGraph] = useState(null);
 	const [callFooter, setCallFooter] = useState(null);
@@ -28,49 +28,63 @@ const Main = (props) => {
 	const [callHeader, setCallHeader] = useState(null);
 	const [callAttributeEditor, setCallAttributeEditor] = useState(null);
 
+	// 在 graph 更動時會呼叫
 	//Called when the graph changes
 	useEffect(() => {
 		if (graph !== null && graph.init === true) {
+			// 設好 window global 變數, 用於 mxGraph 內部
 			//Set the window global variable to be used inside mxGraph
 			window["mxGraphModel"] = mxGraphModel;
 			window["mxGeometry"] = mxGeometry;
 
+			// 初始化 mxGraph
 			//Initialize mxGraph
 			graph.init = false;
 			setGraph(graph);
 
+			// 設置這個參數後節點之間才可以連接
 			//After setting this parameter, the nodes can be connected
 			graph.setConnectable(true);
 
+			// 開啟平移
 			//Turn on pan
 			graph.setPanning(true);
 
+			// 開啟範圍選取
 			//Open range selection
 			new mxRubberband(graph);
 
+			// Shift+Backspace 刪除選取的 cells
 			//to delete the node
 			setDeleteEvent(graph);
 
-			// setStylesheet mxStylesheet
+			// 設定 mxStylesheet
 			setStylesheet(graph);
 
+			// 設定錨點
 			//Set anchor point
 			// Overridden to define per-shape connection points
 			setAnchors(mxGraph, mxShape);
 
+			// Overridden mxGraph 的一些 function
 			//Some functions of Overridden mxGraph
 			setDefault(graph, mxConnectionHandler);
 
+			// 設定剪貼簿
 			//Set clipboard
+			// 尚有 bug 無法使用
 			//There are bugs and cannot be used
 			setClipboard(graph);
 
+			// 設定 UML Object 可拉進 graph
 			//Set UML Object to pull into graph
 			setCallFooter("setUMLObjs");
 
 			// 設定工具列
 			//Settings toolbar
 			setCallToolbar("setToolbar");
+
+			// 設定 Attribute Editor
 			//Configure Attribute Editor
 			setCallAttributeEditor("setAttributeEditor");
 
@@ -92,12 +106,13 @@ const Main = (props) => {
 				<span></span>
 				<span></span>
 
-				<ul id="menu">
-					<AttributeEditor id="attributeEditor" graph={graph} parentCall={callAttributeEditor} />
-				</ul>
+                <ul id="menu">
+                <AttributeEditor id="attributeEditor" graph={graph} parentCall={callAttributeEditor} />
+                </ul>
 			</div>
 			<Footer id="objectSelector" graph={graph} parentCall={callFooter} />
 		</div>
 	);
 }
-export default Main;
+
+// <AttributeEditor id='attributeEditor' graph={graph} parentCall={callAttributeEditor} />
