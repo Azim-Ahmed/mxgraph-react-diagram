@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function AttributeBlock(props) {
+const AttributeBlock = (props) => {
 	function handleFillcolorChange(event) {
 		var isColor = /^#[0-9A-F]{6}$/i;
 
@@ -11,7 +11,6 @@ export default function AttributeBlock(props) {
 			props.setAttr(elt);
 			props.graph.model.setValue(props.selected, elt);
 
-			// 第三個參數若未指定, 預設是所有選取的 cell
 			//If the third parameter is not specified, the default is all selected cells
 			props.graph.setCellStyles("fillColor", elt.fillcolor, [props.selected]);
 		}
@@ -27,7 +26,7 @@ export default function AttributeBlock(props) {
 			props.setAttr(elt);
 			props.graph.model.setValue(props.selected, elt);
 
-			// 第三個參數若未指定, 預設是所有選取的 cell
+
 			//If the third parameter is not specified, the default is all selected cells
 			props.graph.setCellStyles("strokeColor", elt.strokecolor, [props.selected]);
 		}
@@ -49,7 +48,7 @@ export default function AttributeBlock(props) {
 			props.setAttr(elt);
 			props.graph.model.setValue(props.selected, elt);
 
-			// 第三個參數若未指定, 預設是所有選取的 cell
+
 			//If the third parameter is not specified, the default is all selected cells
 			props.graph.setCellStyles("strokeWidth", strokewidth);
 		}
@@ -71,7 +70,7 @@ export default function AttributeBlock(props) {
 			props.setAttr(elt);
 			props.graph.model.setValue(props.selected, elt);
 
-			// 第三個參數若未指定, 預設是所有選取的 cell
+
 			//If the third parameter is not specified, the default is all selected cells
 			props.graph.setCellStyles("opacity", opacity);
 		}
@@ -86,7 +85,7 @@ export default function AttributeBlock(props) {
 		props.attr.UMLtype === "actor"
 	) {
 		return (
-			<React.Fragment>
+			<>
 				<font size="5" class="attrTitle">
 					Block
 				</font>
@@ -106,9 +105,10 @@ export default function AttributeBlock(props) {
 					Opacity:
 					<input class="attrblock" type="number" value={props.attr.opacity} onChange={handleOpacityChange} onBlur={handleOpacityBlur} />
 				</label>
-			</React.Fragment>
+			</>
 		);
 	} else {
 		return null;
 	}
 }
+export default AttributeBlock;

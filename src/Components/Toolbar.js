@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import setToolbar from "./setToolbar"
 
-export default function Toolbar(props) {
+const Toolbar = (props) => {
     const [btns, setBtns] = useState(null);
 
     // Handle parent call
@@ -30,3 +30,4 @@ export default function Toolbar(props) {
         );
     }
 }
+export default Toolbar;

@@ -20,7 +20,7 @@ import "./Css/common.css";
 import "./Css/explorer.css";
 import "./Css/hamburger_menu.css";
 
-const Main = (props) => {
+const Main = () => {
 	// mxGraph object
 	const [graph, setGraph] = useState(null);
 	const [callFooter, setCallFooter] = useState(null);

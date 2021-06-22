@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { mxClient,
+import {
+	mxClient,
 	mxUtils,
 	mxEvent,
 	mxGraph
@@ -24,13 +25,13 @@ class App extends React.Component {
 			// Displays an error message if the browser is not supported.
 			mxUtils.error("Browser is not supported!", 200, false);
 		} else {
-			// 禁用滑鼠右鍵
+
 			//Disable right mouse button
 			mxEvent.disableContextMenu(container);
 
 			var graph = new mxGraph(container);
 
-			// 設定上一層的 graph, 告知正處於初始化階段
+
 			//Set the graph of the upper layer to inform that it is in the initialization phase
 			graph.init = true;
 			this.props.setGraph(graph);

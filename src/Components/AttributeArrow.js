@@ -11,7 +11,6 @@ export default function AttributeArrow(props) {
             props.setAttr(elt);
             props.graph.model.setValue(props.selected, elt);
 
-            // 第三個參數若未指定, 預設是所有選取的 cell
             //If the third parameter is not specified, the default is all selected cells
 
             props.graph.setCellStyles('strokeColor', elt.strokecolor, [props.selected]);
@@ -72,8 +71,8 @@ export default function AttributeArrow(props) {
     if (props.attr.UMLtype === 'arrow') {
         return (
             <React.Fragment>
-				<font size="5" class="attrTitle">
-					Arrow
+                <font size="5" class="attrTitle">
+                    Arrow
                 </font>
                 <label>
                     Dashed:
@@ -81,7 +80,7 @@ export default function AttributeArrow(props) {
                 </label>
                 <label>
                     Endfill:
-                    <input type="checkbox" value={props.attr.endfill} onChange={handleEndfillChange} checked={props.attr.endfill > 0}/>
+                    <input type="checkbox" value={props.attr.endfill} onChange={handleEndfillChange} checked={props.attr.endfill > 0} />
                 </label>
                 <label>
                     Stroke color:

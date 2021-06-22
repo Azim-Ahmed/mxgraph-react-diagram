@@ -5,20 +5,20 @@ import {
 	mxGeometry,
 	mxDragSource
 } from "mxgraph-js";
-
-export default function setUMLObjs(graph, objLists) {
+//declaring main file component
+const setUMLObjs = (graph, objLists) => {
 	var idx = 0;
 
 	const setObj = function (umlObjImgClass, width, height, value) {
-		// 判斷 Drop 是否有效
+
 		//Determine whether the Drop is valid
 		const dropGraph = function (evt) {
 			const x = mxEvent.getClientX(evt);
 			const y = mxEvent.getClientY(evt);
-			// 獲取鼠標點擊的座標上最頂層的元素
+
 			//Get the topmost element on the coordinates of the mouse click
 			const elt = document.elementFromPoint(x, y);
-			// 如果此元素落在 graph 中
+
 			//If this element falls in the graph
 			if (mxUtils.isAncestorNode(graph.container, elt)) {
 				return graph;
@@ -35,9 +35,8 @@ export default function setUMLObjs(graph, objLists) {
 
 		li.id = "UMLObj_" + idx;
 		idx += 1;
-		// mouseover 時變大, 效果像是 Mac Dock
 		//When mouseover becomes larger, the effect is like Mac Dock
-		li.addEventListener("mouseover", function(evt) {
+		li.addEventListener("mouseover", function (evt) {
 			var childImg = this.firstElementChild;
 			childImg.classList.add("BigUMLObj");
 			var i = parseInt(this.id.split("_")[1]);
@@ -50,7 +49,7 @@ export default function setUMLObjs(graph, objLists) {
 				postImg.classList.add("MiddleUMLObj");
 			}
 		}, false)
-		li.addEventListener("mouseout", function(evt) {
+		li.addEventListener("mouseout", function (evt) {
 			var childImg = this.firstElementChild;
 			childImg.classList.remove("BigUMLObj");
 			var i = parseInt(this.id.split("_")[1]);
@@ -67,7 +66,6 @@ export default function setUMLObjs(graph, objLists) {
 		li.appendChild(img);
 		objectLists.appendChild(li);
 
-		// Drop 成功後新建一個 vertex
 		//Create a new vertex after the drop is successful
 		const dropSuccessCb = function (graph, evt, target, x, y) {
 			value.UMLtype = umlObjImgClass;
@@ -160,3 +158,4 @@ export default function setUMLObjs(graph, objLists) {
 		'opacity': 100
 	});
 }
+export default setUMLObjs;

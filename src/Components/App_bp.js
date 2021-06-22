@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {mxClient,
+import {
+    mxClient,
     mxUtils,
     mxEvent,
     mxGraph,
@@ -8,11 +9,11 @@ import {mxClient,
 } from 'mxgraph-js';
 
 export default class App extends React.Component {
+    //I don't know what happened, but if you have any questions, please comment back and have a look.
+
     constructor(props) {
         super(props);
-        // 不知道發生什麼事情, 但有問題就註解回來看看ㄏ
-        //I don't know what happened, but if you have any questions, please comment back and have a look.
-        // this.LoadGraph = this.LoadGraph.bind(this);
+        this.LoadGraph = this.LoadGraph.bind(this);
     }
 
     componentDidMount() {
@@ -26,19 +27,12 @@ export default class App extends React.Component {
         if (!mxClient.isBrowserSupported()) {
             mxUtils.error("Browser is not supported!", 200, false);
         } else {
-            // 禁用鼠标右键
             //Open area selection
             mxEvent.disableContextMenu(container);
-
             var graph = new mxGraph(container);
-
-            // 设置这个属性后节点之间才可以连接
             //After setting this property, the nodes can be connected
             graph.setConnectable(false);
-
-            // 开启区域选择
             new mxRubberband(graph);
-
             var parent = graph.getDefaultParent();
             graph.getModel().beginUpdate();
             try {
@@ -52,6 +46,6 @@ export default class App extends React.Component {
     }
 
     render() {
-        return <div className="graph-container" ref="divGraph" id={this.props.id}/>;
+        return <div className="graph-container" ref="divGraph" id={this.props.id} />;
     }
 }
