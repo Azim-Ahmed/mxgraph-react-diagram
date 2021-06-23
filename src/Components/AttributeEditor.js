@@ -5,7 +5,7 @@ import AttributeBlock from "./AttributeBlock";
 import AttributeArrow from "./AttributeArrow";
 import "../Css/input_text.css"
 
-export default function AttributeEditor(props) {
+const AttributeEditor = (props) => {
 	const [selected, setSelected] = useState(null);
 	const [attr, setAttr] = useState(null);
 
@@ -31,13 +31,13 @@ export default function AttributeEditor(props) {
 		return (
 			<div id={props.id}>
 				<font size="6">AttributeEditor</font>
-            </div>
-            
+			</div>
+
 		);
 	} else {
 		return (
 			<div id={props.id}>
-                <font size="6">AttributeEditor</font>
+				<font size="6">AttributeEditor</font>
 				<AttributeFont attr={attr} setAttr={setAttr} selected={selected} graph={props.graph} />
 				<AttributeBlock attr={attr} setAttr={setAttr} selected={selected} graph={props.graph} />
 				<AttributeArrow attr={attr} setAttr={setAttr} selected={selected} graph={props.graph} />
@@ -45,3 +45,4 @@ export default function AttributeEditor(props) {
 		);
 	}
 }
+export default AttributeEditor;

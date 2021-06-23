@@ -54,18 +54,18 @@ export default function AttributeFont(props) {
         props.attr.UMLtype === 'arrow') {
         return (
             <React.Fragment>
-                <font size="5" class="attrTitle">Font</font>
+                <font size="5" className="attrTitle">Font</font>
                 <label>
                     Text:
-                    <textarea class="attrblock" type="text" value={props.attr.text} onChange={handleTextChange}></textarea>
+                    <textarea className="attrblock" type="text" value={props.attr.text} onChange={handleTextChange}></textarea>
                 </label>
                 <label>
                     Font size:
-                    <input class="attrblock" type="number" value={props.attr.fontsize} onChange={handleFontsizeChange} onBlur={handleFontsizeBlur} />
+                    <input className="attrblock" type="number" value={props.attr.fontsize} onChange={handleFontsizeChange} onBlur={handleFontsizeBlur} />
                 </label>
                 <label>
                     Font color:
-                    <input class="attrblock" type="color" value={props.attr.fontcolor} onChange={handleFontcolorChange} />
+                    <input className="attrblock" type="color" value={props.attr.fontcolor} onChange={handleFontcolorChange} />
                 </label>
             </React.Fragment>
         );

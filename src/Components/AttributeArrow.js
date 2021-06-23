@@ -33,7 +33,7 @@ export default function AttributeArrow(props) {
             props.setAttr(elt);
             props.graph.model.setValue(props.selected, elt);
 
-            // 第三個參數若未指定, 預設是所有選取的 cell
+
             //If the third parameter is not specified, the default is all selected cells
             props.graph.setCellStyles('strokeWidth', strokewidth);
         }
@@ -71,7 +71,7 @@ export default function AttributeArrow(props) {
     if (props.attr.UMLtype === 'arrow') {
         return (
             <React.Fragment>
-                <font size="5" class="attrTitle">
+                <font size="5" className="attrTitle">
                     Arrow
                 </font>
                 <label>
@@ -84,15 +84,15 @@ export default function AttributeArrow(props) {
                 </label>
                 <label>
                     Stroke color:
-                    <input class="attrblock" type="color" value={props.attr.strokecolor} onChange={handleStrokecolorChange} />
+                    <input className="attrblock" type="color" value={props.attr.strokecolor} onChange={handleStrokecolorChange} />
                 </label>
                 <label>
                     Stroke width:
-                    <input class="attrblock" type="number" value={props.attr.strokewidth} onChange={handleStrokewidthChange} onBlur={handleStrokewidthBlur} />
+                    <input className="attrblock" type="number" value={props.attr.strokewidth} onChange={handleStrokewidthChange} onBlur={handleStrokewidthBlur} />
                 </label>
                 <label>
                     Arrow style:
-                    <select class="attrblock" value={props.attr.endarrow} onChange={handleEndarrowChange}>
+                    <select className="attrblock" value={props.attr.endarrow} onChange={handleEndarrowChange}>
                         <option value="block">block</option>
                         <option value="open">open</option>
                         <option value="diamond">diamond</option>

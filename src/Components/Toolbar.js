@@ -21,9 +21,9 @@ const Toolbar = (props) => {
     else {
         return (
             <div id={props.id}>
-                {btns.map(item => (
-                    <React.Fragment>
-                        <div class={`sidetool ${item.class}`} onClick={item.clickEvt}></div>
+                {btns.map((item, index) => (
+                    <React.Fragment key={index}>
+                        <div className={`sidetool ${item.class}`} onClick={item.clickEvt}></div>
                     </React.Fragment>
                 ))}
             </div>

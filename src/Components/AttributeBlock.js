@@ -1,5 +1,3 @@
-import React from "react";
-
 const AttributeBlock = (props) => {
 	function handleFillcolorChange(event) {
 		var isColor = /^#[0-9A-F]{6}$/i;
@@ -47,8 +45,6 @@ const AttributeBlock = (props) => {
 
 			props.setAttr(elt);
 			props.graph.model.setValue(props.selected, elt);
-
-
 			//If the third parameter is not specified, the default is all selected cells
 			props.graph.setCellStyles("strokeWidth", strokewidth);
 		}
@@ -86,24 +82,24 @@ const AttributeBlock = (props) => {
 	) {
 		return (
 			<>
-				<font size="5" class="attrTitle">
+				<font size="5" className="attrTitle">
 					Block
 				</font>
 				<label>
 					Background color:
-					<input class="attrblock" type="color" value={props.attr.fillcolor} onChange={handleFillcolorChange} />
+					<input className="attrblock" type="color" value={props.attr.fillcolor} onChange={handleFillcolorChange} />
 				</label>
 				<label>
 					Stroke color:
-					<input class="attrblock" type="color" value={props.attr.strokecolor} onChange={handleStrokecolorChange} />
+					<input className="attrblock" type="color" value={props.attr.strokecolor} onChange={handleStrokecolorChange} />
 				</label>
 				<label>
 					Stroke width:
-					<input class="attrblock" type="number" value={props.attr.strokewidth} onChange={handleStrokewidthChange} onBlur={handleStrokewidthBlur} />
+					<input className="attrblock" type="number" value={props.attr.strokewidth} onChange={handleStrokewidthChange} onBlur={handleStrokewidthBlur} />
 				</label>
 				<label>
 					Opacity:
-					<input class="attrblock" type="number" value={props.attr.opacity} onChange={handleOpacityChange} onBlur={handleOpacityBlur} />
+					<input className="attrblock" type="number" value={props.attr.opacity} onChange={handleOpacityChange} onBlur={handleOpacityBlur} />
 				</label>
 			</>
 		);

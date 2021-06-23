@@ -8,7 +8,7 @@ import {
 import html2canvas from 'html2canvas';
 import 'js-file-download';
 
-export default function setToolbar(graph, setBtns) {
+const setToolbar = (graph, setBtns) => {
 	// Adds zoom buttons in top, left corner
 	var btnsObj = [];
 	var fileUploader;
@@ -45,6 +45,7 @@ export default function setToolbar(graph, setBtns) {
 
 	const DrawGraph = function (xmlString) {
 		//var xmlString = '<root><mxCell id="0"/><mxCell id="1" parent="0"/><mxCell id="2" style="text" vertex="1" parent="1"><Object text="Text" fontsize="12" fontcolor="#000000" UMLtype="text" as="value"/><mxGeometry x="510" y="240" width="50" height="30" as="geometry"/></mxCell><mxCell id="3" style="rectangle" vertex="1" parent="1"><Object text="" fontsize="12" fontcolor="#000000" fillcolor="#FFFFFF" strokecolor="#000000" strokewidth="1" opacity="100" UMLtype="rectangle" as="value"/><mxGeometry x="710" y="330" width="120" height="80" as="geometry"/></mxCell></root>';
+		console.log(xmlString);
 		var doc = mxUtils.parseXml(xmlString);
 		var codec = new mxCodec(doc);
 		var elt = doc.documentElement.firstChild;
@@ -61,29 +62,29 @@ export default function setToolbar(graph, setBtns) {
 	const SaveXml = function (xml) {
 		// file name
 		var filename = document.getElementById('filename').value;
-		if(filename == ''){
+		if (filename === '') {
 			filename = 'WebUML';
 		}
 		var fileDownload = require('js-file-download');
-		fileDownload(xml, filename+'.xml');
+		fileDownload(xml, filename + '.xml');
 	}
 
-	const ReadXml = function (){
+	const ReadXml = function () {
 		var fileUploader = document.createElement('input');
 		fileUploader.type = 'file';
-		
+
 		fileUploader.click();
 		var fileReader = new FileReader();
-		fileUploader.addEventListener("change", function(event) {
+		fileUploader.addEventListener("change", function (event) {
 			var xmlType = /xml.*/;
 			if (this.files.length > 0 && this.files[0].type.match(xmlType)) {
-			  fileReader.readAsText(this.files[0]);
-			}else{
+				fileReader.readAsText(this.files[0]);
+			} else {
 				alert('File Type Error');
 				return;
 			}
 		}, false);
-		fileReader.onload = function(e) {
+		fileReader.onload = function (e) {
 			DrawGraph(this.result);
 			alert('Load successed!');
 		}
@@ -91,13 +92,13 @@ export default function setToolbar(graph, setBtns) {
 
 	addButton("screenshoot", function () {
 		var filename = document.getElementById('filename').value;
-		if(filename == ''){
+		if (filename == '') {
 			filename = 'WebUML';
 		}
 		html2canvas(document.querySelector("#canvas")).then(canvas => {
 			var download = document.createElement('a');
 			download.href = canvas.toDataURL("image/png");
-			download.download = filename+'.png';
+			download.download = filename + '.png';
 			download.click();
 		});
 	});
@@ -163,5 +164,7 @@ export default function setToolbar(graph, setBtns) {
 	})
 
 	setBtns(btnsObj);
-	
+
 }
+
+export default setToolbar;

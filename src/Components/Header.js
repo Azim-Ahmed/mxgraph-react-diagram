@@ -16,7 +16,7 @@ export default function Header(props) {
 
 	return (
 		<div id={props.id}>
-			<div class="form-group">
+			<div className="form-group">
 				<span>Filename: </span>
 				<input id="filename" type="text" placeholder="Untitled fileName" />
 			</div>

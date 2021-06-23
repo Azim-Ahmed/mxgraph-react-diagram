@@ -16,7 +16,7 @@ export default function Footer(props) {
 
 	return (
 		<div id={props.id}>
-			<div class="float_center">
+			<div className="float_center">
 				<ul id={objLists}></ul>
 			</div>
 		</div>
